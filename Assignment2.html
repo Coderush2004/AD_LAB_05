@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addition of Two Numbers</title>
+    <style>
+        form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        input[type="text"] {
+            width: 150px;
+            padding: 5px;
+        }
+    </style>
+    <script>
+        function add() {
+            const a = parseInt(document.getElementsByName("textNo1")[0].value) || 0;
+            const b = parseInt(document.getElementsByName("textNo2")[0].value) || 0;
+            document.getElementsByName("result")[0].value = a + b;
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <input type="text" name="textNo1" placeholder="Enter first number">
+        <input type="text" name="textNo2" placeholder="Enter second number">
+        <input type="button" value="Result" onclick="add()">
+        <input type="text" name="result" placeholder="Sum" readonly>
+    </form>
+</body>
+</html>

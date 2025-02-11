@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator with Buttons Only</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f3f4f6;
+    }
+    .calculator {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+      width: 300px;
+    }
+    #display {
+      width: 100%;
+      height: 50px;
+      font-size: 24px;
+      text-align: right;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      background: #f7fafc;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .buttons button {
+      padding: 20px;
+      font-size: 18px;
+      background: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .buttons button:hover {
+      background: #357ab7;
+    }
+    .buttons .equals {
+      grid-column: span 2;
+    }
+    .buttons .clear {
+      background: #ff5c5c;
+    }
+    .buttons .clear:hover {
+      background: #e74c3c;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      color: #333;
+      margin-top: 0;
+    }
+    h6 {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+    }
+  </style>
+  <script>
+    let currentInput = '';
+
+    function updateDisplay(value) {
+      currentInput += value;
+      document.getElementById('display').value = currentInput;
+    }
+
+    function clearDisplay() {
+      currentInput = '';
+      document.getElementById('display').value = '';
+    }
+
+    function calculateResult() {
+      try {
+        // Safe evaluation using Function constructor for mathematical expressions
+        const result = new Function('return ' + currentInput)();
+        document.getElementById('display').value = result;
+        currentInput = result.toString();
+      } catch {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Simple Calculator</h1>
+  <div class="calculator">
+    <input type="text" id="display" readonly placeholder="0">
+    <div class="buttons">
+      <button onclick="updateDisplay('7')">7</button>
+      <button onclick="updateDisplay('8')">8</button>
+      <button onclick="updateDisplay('9')">9</button>
+      <button onclick="updateDisplay('/')">/</button>
+
+      <button onclick="updateDisplay('4')">4</button>
+      <button onclick="updateDisplay('5')">5</button>
+      <button onclick="updateDisplay('6')">6</button>
+      <button onclick="updateDisplay('*')">*</button>
+
+      <button onclick="updateDisplay('1')">1</button>
+      <button onclick="updateDisplay('2')">2</button>
+      <button onclick="updateDisplay('3')">3</button>
+      <button onclick="updateDisplay('-')">-</button>
+
+      <button onclick="updateDisplay('0')">0</button>
+      <button onclick="updateDisplay('.')">.</button>
+      <button class="equals" onclick="calculateResult()">=</button>
+      <button onclick="updateDisplay('+')">+</button>
+
+      <button class="clear" onclick="clearDisplay()">C</button>
+    </div>
+  </div>
+  <h6>All Rights Reserved @RohanBoseCodes</h6>
+</body>
+</html>
